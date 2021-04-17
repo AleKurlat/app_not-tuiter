@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'; // necesario para redirigir rutas
+//import { BrowserRouter as Router, Route } from 'react-router-dom'; // necesario para redirigir rutas
 import { Provider } from 'react-redux'; // necesario para redux
 import store from './store/store'; // necesario para redux
-import Login from "./proyecto/login.jsx"; // importo página LOGIN
+//import Login from "./proyecto/login.jsx"; // importo página LOGIN
 
 /*
 function checkAuth(){

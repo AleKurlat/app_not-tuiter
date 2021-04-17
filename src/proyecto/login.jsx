@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 export default function Login() {
 
@@ -24,7 +24,7 @@ export default function Login() {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
             }}
 
-        catch(e){console.log(e.response.data);}    
+        catch(e){console.log(e.response.data.message);}    
     }
 
     return (

@@ -12,7 +12,10 @@ function reducer(state = estadoInicial, action) {
 
         case 'GUARDAR_TOKEN':
             nuevoEstado.token=action.token;
-            console.log(nuevoEstado);
+            return nuevoEstado;
+
+        case "GUARDAR_LISTADO":
+            nuevoEstado.listado=action.listado;
             return nuevoEstado;
 
         default:
