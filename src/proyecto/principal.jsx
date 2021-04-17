@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Login from "./login.jsx"; // importo página LOGIN
 
 export default function Principal() {
 
@@ -10,9 +11,12 @@ export default function Principal() {
         }
     }
 
-    axios.get(url, opciones);
+    //axios.get(url, opciones);
 
     return (
-        <div>hola</div>
+        <div>hola
+            <Login />
+        </div>
+        
     )
 } 

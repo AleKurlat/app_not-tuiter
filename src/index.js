@@ -9,8 +9,10 @@ import { Provider } from 'react-redux'; // necesario para redux
 import store from './store/store'; // necesario para redux
 import Login from "./proyecto/login.jsx"; // importo página LOGIN
 
+/*
 function checkAuth(){
   var token = store.gestState().token;
+  console.log(token);
   if (token) {
       return (console.log("estas logueado"));
   } else {
@@ -18,16 +20,24 @@ function checkAuth(){
   }
 }
 
+
+y abajo en la ruta "/" iría render={checkAuth}
+
 <Provider store={store}>
   <Router>
-    <Route exact path="/" component={App} render={checkAuth} />
-    <Route component={Login} path ="/login" />
+    <Route exact path="/" component={App}  />
+    <Route path ="/login" component={Login}  />
   </Router>
 </Provider>
+*/
+
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

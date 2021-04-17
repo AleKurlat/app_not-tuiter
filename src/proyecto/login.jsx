@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function Login() {
 
     const url = "http://localhost:3000/login";
+
+    const dispatch = useDispatch();
 
     const [objLogin, setObjLogin] = useState({
         usuario: "",
@@ -16,20 +19,19 @@ export default function Login() {
 
     async function guardarForm(e){            
         try{ 
-            console.log(objLogin);
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
-                alert(loguear.data);
+                dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
             }}
 
-        catch(e){alert(e.response.data.Error);}    
+        catch(e){console.log(e.response.data);}    
     }
 
     return (
         <div>
-            hola
+            <h1>Ingresar usuario y clave</h1>
             <div><input type="text" onChange={cambiarValorInput} value={objLogin.usuario} name="usuario"></input></div>
-            <div><input type="text" onChange={cambiarValorInput} value={objLogin.clave} name="clave"></input></div>
+            <div><input type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave"></input></div>
             <div><div onClick={guardarForm} className="boton">Guardar</div></div>
         </div>
     )

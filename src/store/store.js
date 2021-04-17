@@ -6,12 +6,13 @@ const estadoInicial = {
 
 function reducer(state = estadoInicial, action) {
 
-    const nuevoEstado = JSON.parse(JSON.stringify(state))
+    const nuevoEstado = JSON.parse(JSON.stringify(state));
 
     switch (action.type) {        
 
         case 'GUARDAR_TOKEN':
-            nuevoEstado.token="";
+            nuevoEstado.token=action.token;
+            console.log(nuevoEstado);
             return nuevoEstado;
 
         default:
