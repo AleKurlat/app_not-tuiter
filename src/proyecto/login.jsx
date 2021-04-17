@@ -4,7 +4,9 @@ import {useDispatch} from 'react-redux';
 
 export default function Login() {
 
-    const url = "http://localhost:3000/login";
+    const dominio = "http://localhost:3001/";
+    const ruta = "login";
+    const url = dominio + ruta;
     const dispatch = useDispatch();
     const [objLogin, setObjLogin] = useState({
         usuario: "",
