@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import Login from "./login.jsx"; // importo página LOGIN
 import {useDispatch, useSelector} from 'react-redux';
+import Card from './card.jsx'
 
 export default function Principal() {
 
-    const url = "http://localhost:3000/";   
-
+    const dominio ='https://jsonplaceholder.typicode.com/';    
+    const ruta = 'posts/';
+    const url =  dominio + ruta;
     const dispatch = useDispatch();
-
     const token = useSelector((estado) => estado.token);
     const listado = useSelector((estado) => estado.listado);
 
@@ -26,21 +26,22 @@ export default function Principal() {
                     dispatch({type: "GUARDAR_LISTADO", listado: resp.data});
                 }
             }
-            catch(e){dispatch({type: "GUARDAR_LISTADO", listado: e.response.data.message})}
+            catch(e){dispatch(console.log(e.response.data.message))};
         }
 
-        traerListado();
-        
+        traerListado();        
                
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token]); 
+    }, [token]);  
  
+    let listadoMapeado = "Cargando datos...";
+    if(listado[0]){listadoMapeado = listado.map((unElemento, i) => 
+        <Card datos={unElemento} key={i} url={url}/>)}
+
     return (
         <div>
             <h1>Listado</h1>
-            {listado}
-            <Login />
-        </div>
-        
+            {listadoMapeado}
+        </div>        
     )
 } 

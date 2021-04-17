@@ -1,7 +1,8 @@
 import { createStore } from 'redux';
 
 const estadoInicial = {
-    token:""
+    token:"",
+    listado: []
 }
 
 function reducer(state = estadoInicial, action) {
