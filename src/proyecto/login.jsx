@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {Link} from "react-router-dom";
 
 export default function Login(props) {
 
@@ -34,6 +35,8 @@ export default function Login(props) {
             <div><div>Usuario: </div><input type="text" onChange={cambiarValorInput} value={objLogin.usuario} name="usuario"></input></div>
             <div><div>Contraseña: </div><input type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave"></input></div>
             <div><div onClick={guardarForm} className="boton">Guardar</div></div>
+            <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
+
         </div>
     )
 } 
