@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Card from './card.jsx'
+import Card from './card.jsx';
+import {Link} from "react-router-dom";
 
-export default function Principal() {
+export default function Principal(props) {
 
-    const dominio ='https://jsonplaceholder.typicode.com/';    
-    const ruta = 'posts/';
+    const dominio = props.dominio;    
+    const ruta = '';
     const url =  dominio + ruta;
     const dispatch = useDispatch();
     const token = useSelector((estado) => estado.token);
@@ -38,10 +39,17 @@ export default function Principal() {
     if(listado[0]){listadoMapeado = listado.map((unElemento, i) => 
         <Card datos={unElemento} key={i} url={url}/>)}
 
+    function desloguear(){
+        dispatch({type: 'GUARDAR_TOKEN', token: ""});
+    }
+
     return (
         <div>
             <h1>Listado</h1>
             {listadoMapeado}
+            <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
+            <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
+
         </div>        
     )
 } 

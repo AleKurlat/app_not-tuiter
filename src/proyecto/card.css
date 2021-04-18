@@ -35,3 +35,8 @@ input{
   overflow-wrap: break-word;
   width: 250px;
 }
+
+a{
+  text-decoration:none;
+  color:inherit;
+}

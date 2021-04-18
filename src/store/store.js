@@ -2,7 +2,8 @@ import { createStore } from 'redux';
 
 const estadoInicial = {
     token:"",
-    listado: []
+    listado: [],
+    usuario: {}
 }
 
 function reducer(state = estadoInicial, action) {
@@ -17,6 +18,10 @@ function reducer(state = estadoInicial, action) {
 
         case "GUARDAR_LISTADO":
             nuevoEstado.listado=action.listado;
+            return nuevoEstado;
+
+        case "GUARDAR_USUARIO":
+            nuevoEstado.usuario=action.usuario;
             return nuevoEstado;
 
         default:

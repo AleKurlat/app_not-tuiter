@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 
-export default function Login() {
+export default function Login(props) {
 
-    const dominio = "http://localhost:3001/";
+    const dominio = props.dominio;
     const ruta = "login";
     const url = dominio + ruta;
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export default function Login() {
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
+                dispatch({type: 'GUARDAR_USUARIO', usuario: objLogin});
             }}
 
         catch(e){alert(e.response.data.message);}    
