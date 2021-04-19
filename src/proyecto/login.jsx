@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 export default function Login(props) {
 
     const dominio = props.dominio;
-    const ruta = "login";
+    const ruta = "api/login";
     const url = dominio + ruta;
     const dispatch = useDispatch();
     const [objLogin, setObjLogin] = useState({
