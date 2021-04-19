@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 export default function Registro(props) {
 
     const dominio = props.dominio;
-    const ruta = "api/registro";
+    const ruta = "api/usuarios";
     const url = dominio + ruta;
     const dispatch = useDispatch();
     const [objRegistro, setObjRegistro] = useState({
