@@ -23,8 +23,13 @@ export default function Login(props) {
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
-                dispatch({type: 'GUARDAR_USUARIO', usuario: objLogin});
-            }}
+                const opciones = {headers: {Authorization: loguear.data.token}};                
+                const usuarioLogueado = await axios.get((dominio + "api/usuarios/user/" + objLogin.usuario),opciones);
+                if(usuarioLogueado.status===200) {
+                    dispatch({type: 'GUARDAR_USUARIO', usuario: usuarioLogueado.data});
+                }                
+            }
+        }
 
         catch(e){alert(e.response.data.message);}    
     }

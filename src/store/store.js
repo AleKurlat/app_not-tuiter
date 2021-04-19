@@ -4,7 +4,9 @@ const estadoInicial = {
     token:"",
     listadoPosteos: [],
     listadoUsuarios: [],
-    usuario: {}
+    usuario: {},
+    modificarPosteos: 0,
+    modificarUsuarios: 0
 }
 
 function reducer(state = estadoInicial, action) {
