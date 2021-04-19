@@ -1,15 +1,17 @@
 import './card.css';
+import {useSelector} from 'react-redux';
 
 export default function Card(props){ 
 
-    function listarPropiedades(elemento) {        
-        return Object.entries(elemento).map((el, i) => {
-        return (<div key={i}><span>{el[0]}: </span><span className="dato">{el[1]}</span></div>)
-    })}
+    const listadoUsuarios = useSelector((estado) => estado.listadoUsuarios);
+    let autorPosteo = listadoUsuarios.find(elem => {return (elem.id === props.datos.id_user)});
     
         return(
             <div className="Card">
-                {listarPropiedades(props.datos)}
+                <div>Autor: <span className="dato">{autorPosteo.usuario}</span></div>
+                <div>Fecha: <span className="dato">{props.datos.fecha}</span></div>
+                <div>Post: <span className="dato">{props.datos.body}</span></div>
+
             </div>
             )
 }

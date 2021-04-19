@@ -26,6 +26,11 @@ export default function Registro(props) {
             if (loguear.status===200) {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
                 alert("Usuario guardado correctamente");
+                setObjRegistro({        
+                    usuario: "",
+                    clave:"",
+                    email:"",
+                    cel:""})
             }}
 
         catch(e){alert(e.response.data.message);}    
@@ -38,7 +43,7 @@ export default function Registro(props) {
             <div><div>Contraseña: </div><input type="password" onChange={cambiarValorInput} value={objRegistro.clave} name="clave"></input></div>
             <div><div>Email: </div><input type="email" onChange={cambiarValorInput} value={objRegistro.email} name="email"></input></div>
             <div><div>Cel: </div><input type="tel" onChange={cambiarValorInput} value={objRegistro.cel} name="cel"></input></div>
-            <div><div onClick={guardarForm} className="boton">Guardar</div></div>
+            <div><div onClick={guardarForm} className="boton">Guardar usuario</div></div>
             <div><div className="boton"><Link to="/">Volver a página principal</Link></div></div>
         </div>
     )
