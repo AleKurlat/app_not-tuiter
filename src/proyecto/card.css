@@ -3,7 +3,19 @@ margin:15px;
 padding:40px;
 border: 3px solid lightblue;
 text-align: left;
+font-size:18px;
+overflow-wrap: break-word;
   }
+
+.posteo{
+  max-width: 560px;
+  padding: 10px;
+}
+
+.datosPost{
+  max-width: 560px;
+  padding: 10px;
+}
 
 input{
   padding: 5px;
@@ -33,10 +45,14 @@ input{
 .dato{
   margin-left:20px;
   overflow-wrap: break-word;
-  width: 250px;
+  width: 490px;
 }
 
 a{
   text-decoration:none;
   color:inherit;
+}
+
+textarea{
+  font-size: 20px;
 }

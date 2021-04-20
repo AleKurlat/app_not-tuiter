@@ -27,6 +27,14 @@ function reducer(state = estadoInicial, action) {
             nuevoEstado.usuario=action.usuario;
             return nuevoEstado;
 
+        case "MODIFICAR_POSTEOS":
+            nuevoEstado.modificarPosteos++;
+            return nuevoEstado; 
+
+        case "MODIFICAR_USUARIOS":
+            nuevoEstado.modificarUsuarios++;
+            return nuevoEstado;
+
         default:
             return state;            
     }

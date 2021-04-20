@@ -8,9 +8,8 @@ export default function Card(props){
     
         return(
             <div className="Card">
-                <div>Autor: <span className="dato">{autorPosteo.usuario}</span></div>
-                <div>Fecha: <span className="dato">{props.datos.fecha}</span></div>
-                <div>Post: <span className="dato">{props.datos.body}</span></div>
+                <div className="datosPost"><span >{autorPosteo.usuario}</span><span>{props.datos.fecha}</span></div>
+                <div><div className="posteo">{props.datos.body}</div></div>
 
             </div>
             )

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Card from './card.jsx';
+import FormPost from './formPost.jsx';
 import {Link} from "react-router-dom";
 
 export default function Principal(props) {
@@ -66,8 +67,10 @@ export default function Principal(props) {
 
     return (
         <div>
-            <h1>Listado</h1>
-            {listadoMapeado}
+            <h1>Agregar post</h1>
+            <FormPost dominio={dominio}/>
+            <h1>Posteos</h1>
+            {listadoMapeado.reverse()}
             <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
             <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
 

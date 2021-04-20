@@ -9,12 +9,13 @@ export default function Registro(props) {
     const ruta = "api/usuarios";
     const url = dominio + ruta;
     const dispatch = useDispatch();
-    const [objRegistro, setObjRegistro] = useState({
+    const userVacio = {        
         usuario: "",
         clave:"",
         email:"",
         cel:""
-    });
+    }
+    const [objRegistro, setObjRegistro] = useState(userVacio);
 
     function cambiarValorInput(e) {        
         setObjRegistro({...objRegistro, [e.target.name]:e.target.value});
@@ -22,15 +23,11 @@ export default function Registro(props) {
 
     async function guardarForm(e){            
         try{ 
-            const loguear = await axios.post(url, objRegistro);          
-            if (loguear.status===200) {
-                dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
+            const registrar = await axios.post(url, objRegistro);          
+            if (registrar.status===200) {
+                dispatch({type: 'MODIFICAR_USUARIOS'});
                 alert("Usuario guardado correctamente");
-                setObjRegistro({        
-                    usuario: "",
-                    clave:"",
-                    email:"",
-                    cel:""})
+                setObjRegistro(userVacio);
             }}
 
         catch(e){alert(e.response.data.message);}    
