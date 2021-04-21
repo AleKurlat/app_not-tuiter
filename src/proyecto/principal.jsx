@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Card from './card.jsx';
 import FormPost from './formPost.jsx';
-import {Link} from "react-router-dom";
 
 export default function Principal(props) {
 
@@ -24,7 +23,7 @@ export default function Principal(props) {
                     dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoPosteos"});
                 }
             }
-            catch(e){(console.log(e.response.data.message))};
+            catch(e){(console.log(e.response.data.Error))};
         }
 
         traerListado();    
@@ -45,19 +44,12 @@ export default function Principal(props) {
         listadoMapeado = "Cargando datos...";
     }
 
-    function desloguear(){
-        dispatch({type: 'GUARDAR_TOKEN', token: ""});
-        dispatch({type: 'GUARDAR_USUARIO', usuario: {}});
-    }
-
     return (
         <div>
             <h1>Agregar post</h1>
             <FormPost dominio={dominio}/>
             <h1>Posteos</h1>
             {listadoMapeado}
-            <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
-            <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
         </div>        
     )
 } 

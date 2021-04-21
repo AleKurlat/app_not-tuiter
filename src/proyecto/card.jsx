@@ -21,7 +21,7 @@ export default function Card(props){
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
-        catch(e){alert(e.response.data.message);}    
+        catch(e){alert(e.response.data.Error);}    
     }    
 
     async function guardarEdicion(){
@@ -29,12 +29,12 @@ export default function Card(props){
             const objEditado = {body: bodyEditando};
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
-                console.log(editar.data);
+                console.log(editar);
                 setEsEditar(false);
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
-        catch(e){alert(e.response.data.message);}    
+        catch(e){alert(e.response.data.Error);}    
     } 
 
     function cambiarValorInput(e) {        

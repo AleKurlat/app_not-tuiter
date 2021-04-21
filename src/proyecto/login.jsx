@@ -30,7 +30,7 @@ export default function Login(props) {
             }
         }
 
-        catch(e){alert(e.response.data.message);}    
+        catch(e){alert(e.response.data.Error);}    
     }
 
     return (

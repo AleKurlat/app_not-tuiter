@@ -23,7 +23,7 @@ export default function FormPost(props){
                 dispatch({type: 'MODIFICAR_POSTEOS'});
             }}
 
-        catch(e){alert(e.response.data.message);}    
+        catch(e){alert(e.response.data.Error);}    
     }
 
     return(

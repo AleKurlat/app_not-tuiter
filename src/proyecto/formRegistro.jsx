@@ -29,7 +29,7 @@ export default function Registro(props) {
                 setObjRegistro(userVacio);
             }}
 
-        catch(e){alert(e.response.data.message);}    
+        catch(e){alert(e.response.data.Error);}    
     }
 
     return (

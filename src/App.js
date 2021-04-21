@@ -4,13 +4,14 @@ import Principal from "./proyecto/principal.jsx";
 import Login from "./proyecto/login.jsx"; // importo página LOGIN
 import Registro from "./proyecto/formRegistro.jsx";
 import { BrowserRouter as Router, Route } from 'react-router-dom'; // necesario para redirigir rutas
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 function App() {
   
   const token = useSelector((estado) => estado.token);
   const usuario = useSelector((estado) => estado.usuario);
   const dominio = "http://localhost:3001/";
+  const dispatch = useDispatch();
 
   function checkAuth(){
     if (token) {
@@ -24,8 +25,18 @@ function App() {
     return (<Registro dominio={dominio}/>)
   } 
 
+  function desloguear(){
+    dispatch({type: 'GUARDAR_TOKEN', token: ""});
+    dispatch({type: 'GUARDAR_USUARIO', usuario: {}});
+}
+
   let areaUsuario = "Por favor ingresá con un usuario";
-  if(token) {areaUsuario = "Bienvenido " + usuario.usuario};
+  if(token) {areaUsuario = 
+    <>
+    <h1>Bienvenidx {usuario.usuario}</h1>
+    <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
+    </>
+  };
 
   return (
     <div className="App">
