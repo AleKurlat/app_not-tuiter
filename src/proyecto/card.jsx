@@ -1,6 +1,7 @@
 import './card.css';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
+import React, {useState} from 'react';
 
 export default function Card(props){ 
 
@@ -11,6 +12,8 @@ export default function Card(props){
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
     const usuario = useSelector((estado) => estado.usuario);
+    const [esEditar, setEsEditar] = useState(false);
+    const [bodyEditando, setBodyEditando] = useState(props.datos.body);
 
     async function borrarPosteo(){
         try{ 
@@ -24,32 +27,50 @@ export default function Card(props){
         catch(e){alert(e.response.data.message);}    
     }    
 
-    async function editarPosteo(){
+    async function guardarEdicion(){
         try{ 
-            const editar = await axios.put(urlPosteo, opciones);          
+            const objEditado = {body: bodyEditando}
+            const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
                 console.log(editar.data);
+                setEsEditar(false);
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
 
         catch(e){alert(e.response.data.message);}    
-    }   
+    } 
 
     let areaModificacion = "";
-    if(usuario.id === props.datos.id_user){
+    if(usuario.id === props.datos.id_user && esEditar === false){
         areaModificacion =
         <>
-        <div><div onClick={editarPosteo} className="boton">Editar post</div></div>
+        <div><div onClick={() => {setEsEditar(true)}} className="boton">Editar post</div></div>
         <div><div onClick={borrarPosteo} className="boton">Borrar post</div></div>
         </> 
         
-    }                 
+    }    
+    
+    let cuerpoDelMensaje = "";
+    if(esEditar === false) {
+        cuerpoDelMensaje = <div><div className="posteo">{props.datos.body}</div></div>
+    } else {
+        cuerpoDelMensaje = 
+        <>
+        <div><textarea maxLength="280" rows="6" cols="50" className="posteo" value = {bodyEditando} onChange= {cambiarValorInput}></textarea></div>
+        <div><div onClick={guardarEdicion} className="boton">Guardar cambios</div></div>
+        <div><div onClick={() => {setEsEditar(false)}} className="boton">Cancelar</div></div>
+        </>
+    }
+
+    function cambiarValorInput(e) {        
+        setBodyEditando(e.target.value);
+    };
     
     return(
         <div className="Card">
             <div className="datosPost"><span >{autorPosteo.usuario}</span><span>{props.datos.fecha}</span></div>
-            <div><div className="posteo">{props.datos.body}</div></div>
+            {cuerpoDelMensaje}
             {areaModificacion}
         </div>
     )
