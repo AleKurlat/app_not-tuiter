@@ -23,11 +23,10 @@ export default function Login(props) {
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
-                const opciones = {headers: {Authorization: loguear.data.token}};                
-                const usuarioLogueado = await axios.get((dominio + "api/usuarios/user/" + objLogin.usuario),opciones);
-                if(usuarioLogueado.status===200) {
-                    dispatch({type: 'GUARDAR_USUARIO', usuario: usuarioLogueado.data});
-                }                
+                const base64Url = loguear.data.token.split('.')[1];
+                const base64Decode = Buffer.from(base64Url, "base64");
+                const datosUsuario = JSON.parse(base64Decode);
+                dispatch({type: 'GUARDAR_USUARIO', usuario: datosUsuario});              
             }
         }
 
@@ -41,7 +40,6 @@ export default function Login(props) {
             <div><div>Contraseña: </div><input type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave"></input></div>
             <div><div onClick={guardarForm} className="boton">Ingresar</div></div>
             <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
-
         </div>
     )
 } 

@@ -21,7 +21,6 @@ export default function Card(props){
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
-
         catch(e){alert(e.response.data.message);}    
     }    
 
@@ -35,19 +34,12 @@ export default function Card(props){
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
-
         catch(e){alert(e.response.data.message);}    
     } 
 
-    let areaModificacion = "";
-    if(usuario.id === props.datos.id_user && esEditar === false){
-        areaModificacion =
-        <>
-        <div><div onClick={() => {setEsEditar(true)}} className="boton">Editar post</div></div>
-        <div><div onClick={borrarPosteo} className="boton">Borrar post</div></div>
-        </> 
-        
-    }    
+    function cambiarValorInput(e) {        
+        setBodyEditando(e.target.value);
+    };
     
     let cuerpoDelMensaje = "";
     if(esEditar === false) {
@@ -61,10 +53,15 @@ export default function Card(props){
         </>
     }
 
-    function cambiarValorInput(e) {        
-        setBodyEditando(e.target.value);
-    };
-    
+    let areaModificacion = "";
+    if(usuario.user_id === props.datos.id_user && esEditar === false){
+        areaModificacion =
+        <>
+        <div><div onClick={() => {setEsEditar(true)}} className="boton">Editar post</div></div>
+        <div><div onClick={borrarPosteo} className="boton">Borrar post</div></div>
+        </>        
+    }    
+
     return(
         <div className="Card">
             <div className="datosPost"><span >{props.datos.usuario}</span><span>{props.datos.fecha}</span></div>
