@@ -2,8 +2,8 @@ import { createStore } from 'redux';
 
 const estadoInicial = {
     token:"",
-    listadoPosteos: [],
-    listadoUsuarios: [],
+    listadoPosteos: "",
+    listadoUsuarios: "",
     usuario: {},
     modificarPosteos: 0,
     modificarUsuarios: 0

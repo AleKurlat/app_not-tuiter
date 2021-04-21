@@ -32,11 +32,17 @@ export default function Principal(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [modificarPosteos]);
  
-    let listadoMapeado = "Cargando datos...";
-    if(listadoPosteos[0]){
-        listadoMapeado = listadoPosteos.map((unElemento, i) => 
-        <Card datos={unElemento} key={i} url={url}/>)
-        listadoMapeado.reverse();
+    let listadoMapeado = ""
+    if(listadoPosteos){
+        if(!listadoPosteos[0]){
+            listadoMapeado = "Todavía no hay posteos";
+        } else {
+            listadoMapeado = listadoPosteos.map((unElemento, i) => 
+            <Card datos={unElemento} key={i} url={url}/>)
+            listadoMapeado.reverse();
+        }
+    } else {    
+        listadoMapeado = "Cargando datos...";
     }
 
     function desloguear(){
