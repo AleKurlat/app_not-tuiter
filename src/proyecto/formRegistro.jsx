@@ -13,7 +13,6 @@ export default function Registro(props) {
         usuario: "",
         clave:"",
         email:"",
-        cel:""
     }
     const [objRegistro, setObjRegistro] = useState(userVacio);
 
@@ -39,7 +38,6 @@ export default function Registro(props) {
             <div><div>Usuario: </div><input type="text" onChange={cambiarValorInput} value={objRegistro.usuario} name="usuario"></input></div>
             <div><div>Contraseña: </div><input type="password" onChange={cambiarValorInput} value={objRegistro.clave} name="clave"></input></div>
             <div><div>Email: </div><input type="email" onChange={cambiarValorInput} value={objRegistro.email} name="email"></input></div>
-            <div><div>Cel: </div><input type="tel" onChange={cambiarValorInput} value={objRegistro.cel} name="cel"></input></div>
             <div><div onClick={guardarForm} className="boton">Guardar usuario</div></div>
             <div><div className="boton"><Link to="/">Volver a página principal</Link></div></div>
         </div>
