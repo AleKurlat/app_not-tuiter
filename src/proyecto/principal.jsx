@@ -23,7 +23,7 @@ export default function Principal(props) {
                     dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoPosteos"});
                 }
             }
-            catch(e){(console.log(e.response.data.Error))};
+            catch(e){(alert(e.response.data.Error))};
         }
 
         traerListado();    

@@ -17,7 +17,6 @@ export default function Card(props){
         try{ 
             const borrar = await axios.delete(urlPosteo, opciones);          
             if (borrar.status===200) {
-                console.log(borrar.data);
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
@@ -29,7 +28,6 @@ export default function Card(props){
             const objEditado = {body: bodyEditando};
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
-                console.log(editar);
                 setEsEditar(false);
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
