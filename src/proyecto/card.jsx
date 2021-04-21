@@ -26,7 +26,7 @@ export default function Card(props){
 
     async function guardarEdicion(){
         try{ 
-            const objEditado = {body: bodyEditando}
+            const objEditado = {body: bodyEditando};
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
                 console.log(editar.data);

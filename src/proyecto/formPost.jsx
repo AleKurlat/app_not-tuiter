@@ -6,7 +6,6 @@ export default function FormPost(props){
 
     const url = props.dominio + "api/posteos";
     const [posteo, setPosteo] = useState("");
-    const usuario = useSelector((estado) => estado.usuario);
     const dispatch = useDispatch();
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
@@ -17,13 +16,9 @@ export default function FormPost(props){
 
     async function guardarForm(e){            
         try{
-            const objPosteo ={
-                body: posteo,
-                id_user: usuario.id
-            } 
+            const objPosteo ={body: posteo}; 
             const postear = await axios.post(url, objPosteo, opciones);          
             if (postear.status===200) {
-                console.log(postear.data);
                 setPosteo("");
                 dispatch({type: 'MODIFICAR_POSTEOS'});
             }}
