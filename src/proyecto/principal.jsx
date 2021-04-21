@@ -52,8 +52,11 @@ export default function Principal(props) {
 
  
     let listadoMapeado = "Cargando datos...";
-    if(listadoPosteos[0] && listadoUsuarios[0]){listadoMapeado = listadoPosteos.map((unElemento, i) => 
-        <Card datos={unElemento} key={i} url={url}/>)}
+    if(listadoPosteos[0] && listadoUsuarios[0]){
+        listadoMapeado = listadoPosteos.map((unElemento, i) => 
+        <Card datos={unElemento} key={i} url={url}/>)
+        listadoMapeado.reverse();
+    }
 
     function desloguear(){
         dispatch({type: 'GUARDAR_TOKEN', token: ""});
@@ -70,7 +73,7 @@ export default function Principal(props) {
             <h1>Agregar post</h1>
             <FormPost dominio={dominio}/>
             <h1>Posteos</h1>
-            {listadoMapeado.reverse()}
+            {listadoMapeado}
             <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
             <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
 
