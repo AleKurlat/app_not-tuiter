@@ -14,9 +14,7 @@ export default function Principal(props) {
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
     const listadoPosteos = useSelector((estado) => estado.listadoPosteos);
-    const listadoUsuarios = useSelector((estado) => estado.listadoUsuarios);
     const modificarPosteos = useSelector((estado) => estado.modificarPosteos);
-    const modificarUsuarios = useSelector((estado) => estado.modificarUsuarios);
 
     useEffect(() => {
         async function traerListado(){    
@@ -32,27 +30,10 @@ export default function Principal(props) {
         traerListado();    
                
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [modificarPosteos]);  
-
-    useEffect(() => {
-        async function traerListado(){    
-            try{
-                const resp = await axios.get((dominio + "api/usuarios"), opciones);
-                if (resp.status===200) {
-                    dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoUsuarios"});
-                }
-            }
-            catch(e){(console.log(e.response.data.message))};
-        }
-
-        traerListado();        
-               
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [modificarUsuarios]); 
-
+    }, [modificarPosteos]);
  
     let listadoMapeado = "Cargando datos...";
-    if(listadoPosteos[0] && listadoUsuarios[0]){
+    if(listadoPosteos[0]){
         listadoMapeado = listadoPosteos.map((unElemento, i) => 
         <Card datos={unElemento} key={i} url={url}/>)
         listadoMapeado.reverse();
@@ -64,8 +45,7 @@ export default function Principal(props) {
             id: "",
             usuario: "",
             clave:"",
-            email:"",
-            cel:""}});
+            email:""}});
     }
 
     return (
@@ -76,7 +56,6 @@ export default function Principal(props) {
             {listadoMapeado}
             <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
             <div><div className="boton"><Link to="/registro">Registrar nuevo usuario</Link></div></div>
-
         </div>        
     )
 } 

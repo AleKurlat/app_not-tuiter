@@ -6,8 +6,6 @@ import React, {useState} from 'react';
 export default function Card(props){ 
 
     const dispatch = useDispatch();
-    const listadoUsuarios = useSelector((estado) => estado.listadoUsuarios);
-    let autorPosteo = listadoUsuarios.find(elem => {return (elem.id === props.datos.id_user)});
     const urlPosteo = props.url + "/" + props.datos.id;
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
@@ -69,7 +67,7 @@ export default function Card(props){
     
     return(
         <div className="Card">
-            <div className="datosPost"><span >{autorPosteo.usuario}</span><span>{props.datos.fecha}</span></div>
+            <div className="datosPost"><span >{props.datos.usuario}</span><span>{props.datos.fecha}</span></div>
             {cuerpoDelMensaje}
             {areaModificacion}
         </div>
