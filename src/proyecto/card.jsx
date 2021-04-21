@@ -10,6 +10,7 @@ export default function Card(props){
     const urlPosteo = props.url + "/" + props.datos.id;
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
+    const usuario = useSelector((estado) => estado.usuario);
 
     async function borrarPosteo(){
         try{ 
@@ -22,13 +23,34 @@ export default function Card(props){
 
         catch(e){alert(e.response.data.message);}    
     }    
-    
-        return(
-            <div className="Card">
-                <div className="datosPost"><span >{autorPosteo.usuario}</span><span>{props.datos.fecha}</span></div>
-                <div><div className="posteo">{props.datos.body}</div></div>
-                <div><div onClick={borrarPosteo} className="boton">Borrar post</div></div>
 
-            </div>
-            )
+    async function editarPosteo(){
+        try{ 
+            const editar = await axios.put(urlPosteo, opciones);          
+            if (editar.status===200) {
+                console.log(editar.data);
+                dispatch({type: 'MODIFICAR_POSTEOS'});    
+            }
+        }
+
+        catch(e){alert(e.response.data.message);}    
+    }   
+
+    let areaModificacion = "";
+    if(usuario.id === props.datos.id_user){
+        areaModificacion =
+        <>
+        <div><div onClick={editarPosteo} className="boton">Editar post</div></div>
+        <div><div onClick={borrarPosteo} className="boton">Borrar post</div></div>
+        </> 
+        
+    }                 
+    
+    return(
+        <div className="Card">
+            <div className="datosPost"><span >{autorPosteo.usuario}</span><span>{props.datos.fecha}</span></div>
+            <div><div className="posteo">{props.datos.body}</div></div>
+            {areaModificacion}
+        </div>
+    )
 }
