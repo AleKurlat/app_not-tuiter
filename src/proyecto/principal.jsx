@@ -47,11 +47,7 @@ export default function Principal(props) {
 
     function desloguear(){
         dispatch({type: 'GUARDAR_TOKEN', token: ""});
-        dispatch({type: 'GUARDAR_USUARIO', usuario: {        
-            id: "",
-            usuario: "",
-            clave:"",
-            email:""}});
+        dispatch({type: 'GUARDAR_USUARIO', usuario: {}});
     }
 
     return (
