@@ -30,7 +30,9 @@ export default function Login(props) {
             }
         }
 
-        catch(e){alert(e.response.data.Error);}    
+        catch(e){
+            if(e.response){alert(e.response.data.Error)} else {console.log(e)};
+        }    
     }
 
     return (
