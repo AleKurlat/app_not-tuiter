@@ -20,6 +20,7 @@ export default function Login(props) {
 
     async function guardarForm(e){            
         try{ 
+            console.log("esperando respuesta del servidor");
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
                 dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
