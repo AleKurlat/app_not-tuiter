@@ -25,14 +25,20 @@ export default function Card(props){
 
     async function guardarEdicion(){
         try{ 
-            const objEditado = {body: bodyEditando};
+            const objEditado = {
+                body: bodyEditando,
+                editado: 1            
+            };
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
                 setEsEditar(false);
                 dispatch({type: 'MODIFICAR_POSTEOS'});    
             }
         }
-        catch(e){alert(e.response.data.Error);}    
+        catch(e){
+            alert(e.response.data.Error);
+            setBodyEditando(props.datos.body);
+        }    
     } 
 
     function cambiarValorInput(e) {        
@@ -60,10 +66,14 @@ export default function Card(props){
         </>        
     }    
 
+    let avisoEditado = "";
+    if (props.datos.editado != null){avisoEditado = <div><div className="posteo">Este post fue editado</div></div>}
+
     return(
         <div className="Card">
             <div className="datosPost"><span >{props.datos.usuario}</span><span>{props.datos.fecha}</span></div>
             {cuerpoDelMensaje}
+            {avisoEditado}
             {areaModificacion}
         </div>
     )
