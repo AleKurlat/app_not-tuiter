@@ -10,7 +10,7 @@ function App() {
   
   const token = useSelector((estado) => estado.token);
   const usuario = useSelector((estado) => estado.usuario);
-  const dominio = "http://localhost:3001/";
+  const dominio = "https://not-tuiter-api.herokuapp.com/";
   const dispatch = useDispatch();
 
   function checkAuth(){
