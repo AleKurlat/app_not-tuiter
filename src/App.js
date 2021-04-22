@@ -39,15 +39,18 @@ function App() {
   };
 
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <h3>Not tw*tt*r</h3>
-        <img src={logo} className="App-logo" alt="logo" />
-        <h5>By ALEK</h5>
-        <h6>App con objetivos de práctica de REACT.JS y EXPRESS</h6>
-      </header>
+      <div className="fijo">
+        <header className="App-header">
+          <h3>Not tw*tt*r</h3>
+          <img src={logo} className="App-logo" alt="logo" />
+          <h5>By ALEK</h5>
+          <h6>App con objetivos de práctica de REACT.JS y EXPRESS</h6>
+        </header>
 
-      {areaUsuario}
+        {areaUsuario}
+      </div>
 
       <div className="zonaPosteos">       
         <Router>

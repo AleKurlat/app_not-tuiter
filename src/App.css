@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 160px;
 }
 
 .App-logo {
@@ -11,6 +12,13 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.fijo{
+  position: fixed;
+  width: 100%;
+  top: 0; /* Position the navbar at the top of the page */
+
 }
 
 .App-header {
