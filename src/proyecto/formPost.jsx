@@ -28,7 +28,7 @@ export default function FormPost(props){
 
     return(
         <div className="Card">
-        <div><textarea type="text" onChange={cambiarValorInput} value={posteo} name="posteo" maxLength="280" rows="6" cols="50"></textarea></div>
+        <div><textarea type="text" onChange={cambiarValorInput} value={posteo} name="posteo" maxLength="280" rows="4" cols="50" placeholder="Escribí algo acá..."></textarea></div>
         <div><div onClick={guardarForm} className="boton">Enviar post</div></div>
         </div>
     )

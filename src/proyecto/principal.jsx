@@ -46,9 +46,7 @@ export default function Principal(props) {
 
     return (
         <div>
-            <h1>Agregar post</h1>
             <FormPost dominio={dominio}/>
-            <h1>Posteos</h1>
             {listadoMapeado}
         </div>        
     )

@@ -69,13 +69,13 @@ export default function Card(props){
 
     let avisoEditado = "";
     if (props.datos.editado != null){
-        avisoEditado = <div><div className="posteo">Este post fue editado {formatearFechas(props.datos.editado)}</div></div>
+        avisoEditado = <div><div className="datosPost">Este post fue editado {formatearFechas(props.datos.editado)}</div></div>
         formatearFechas(props.datos.editado);
     }
 
     return(
         <div className="Card">
-            <div className="datosPost"><span >{props.datos.usuario}</span><span>{formatearFechas(props.datos.fecha)}</span></div>
+            <div className="datosPost"><span className ="info">{props.datos.usuario}</span><span className ="info">{formatearFechas(props.datos.fecha)}</span></div>
             {cuerpoDelMensaje}
             {avisoEditado}
             {areaModificacion}

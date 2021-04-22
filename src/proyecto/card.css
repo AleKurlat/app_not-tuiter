@@ -1,19 +1,24 @@
 .Card {
 margin:15px;
 padding:40px;
-border: 3px solid lightblue;
+border: 1px solid rgb(235, 238, 240);
 text-align: left;
 font-size:18px;
 overflow-wrap: break-word;
+background-color: rgb(247, 249, 250);
+border-radius:10px;
+max-width: 400px;
   }
 
 .posteo{
-  max-width: 560px;
   padding: 10px;
+  background-color: white;
+  border: 1px solid rgb(235, 238, 240);
+  width: 100%;
+  border-radius:10px;
 }
 
 .datosPost{
-  max-width: 560px;
   padding: 10px;
 }
 
@@ -25,16 +30,24 @@ input{
 }
 
 .boton{
-  padding: 5px;
+  padding: 10px;
   margin: 6px 0;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: #282c34;
   color: white;
   width: 100%;
   text-align:center;
   font-size: inherit;
   border: white 2px solid;
+  border-radius:10px;
 
+}
+
+.info{
+  background-color: rgb(119 197 245);
+  padding: 10px;
+  border-radius:10px;
+  margin: 3px;
 }
 
 .Card > div {
@@ -55,4 +68,5 @@ a{
 
 textarea{
   font-size: 20px;
+  border-radius:10px;
 }
