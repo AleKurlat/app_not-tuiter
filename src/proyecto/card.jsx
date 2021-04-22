@@ -25,10 +25,7 @@ export default function Card(props){
 
     async function guardarEdicion(){
         try{ 
-            const objEditado = {
-                body: bodyEditando,
-                editado: 1            
-            };
+            const objEditado = {body: bodyEditando};
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
                 setEsEditar(false);
@@ -45,6 +42,10 @@ export default function Card(props){
         setBodyEditando(e.target.value);
     };
     
+    function formatearFechas(fecha){
+        const date = new Date(fecha)
+        return(date.toLocaleString())}
+
     let cuerpoDelMensaje = "";
     if(esEditar === false) {
         cuerpoDelMensaje = <div><div className="posteo">{props.datos.body}</div></div>
@@ -67,11 +68,14 @@ export default function Card(props){
     }    
 
     let avisoEditado = "";
-    if (props.datos.editado != null){avisoEditado = <div><div className="posteo">Este post fue editado</div></div>}
+    if (props.datos.editado != null){
+        avisoEditado = <div><div className="posteo">Este post fue editado {formatearFechas(props.datos.editado)}</div></div>
+        formatearFechas(props.datos.editado);
+    }
 
     return(
         <div className="Card">
-            <div className="datosPost"><span >{props.datos.usuario}</span><span>{props.datos.fecha}</span></div>
+            <div className="datosPost"><span >{props.datos.usuario}</span><span>{formatearFechas(props.datos.fecha)}</span></div>
             {cuerpoDelMensaje}
             {avisoEditado}
             {areaModificacion}
