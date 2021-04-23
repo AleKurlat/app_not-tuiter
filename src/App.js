@@ -14,17 +14,13 @@ function App() {
   //const dominio = "http://localhost:3001/";
   const dispatch = useDispatch();
 
-  function checkAuth(){
+  function checkAuth(props){
     if (token) {
-        return (<Principal dominio={dominio} />);
+        return (<Principal dominio={dominio} varios={props}/>);
     } else {
-        return(<Login dominio={dominio}/>);
+        return(<Login dominio={dominio} varios={props}/>);
     }
   }
-
-  function registroConProps(){
-    return (<Registro dominio={dominio}/>)
-  } 
 
   function desloguear(){
     dispatch({type: 'GUARDAR_TOKEN', token: ""});
@@ -55,8 +51,8 @@ function App() {
 
       <div className="zonaPosteos">       
         <Router>
-          <Route exact path="/" render={checkAuth} />
-          <Route exact path="/registro" render={registroConProps}  />
+          <Route exact path="/" render={(props)=>{return checkAuth(props)}} />
+          <Route exact path="/registro" render={(props) => {return(<Registro dominio={dominio} varios = {props}/>)}}  />
         </Router>
       </div>      
     </div>

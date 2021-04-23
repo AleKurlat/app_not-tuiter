@@ -27,6 +27,7 @@ export default function Registro(props) {
                 dispatch({type: 'MODIFICAR_USUARIOS'});
                 alert("Usuario guardado correctamente");
                 setObjRegistro(userVacio);
+                props.varios.history.push("/");
             }}
 
         catch(e){
