@@ -32,7 +32,7 @@ function App() {
           <h3>Not tw*tt*r</h3>
           <img src={logo} className="App-logo" alt="logo" />
           <h5>By ALEK</h5>
-          <h6>App con objetivos de práctica de REACT.JS y EXPRESS</h6>
+          <h6 className="noCelu">App con objetivos de práctica de REACT.JS y EXPRESS</h6>
         </header>        
       </div>
 

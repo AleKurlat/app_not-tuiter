@@ -52,7 +52,7 @@ export default function Card(props){
     } else {
         cuerpoDelMensaje = 
         <>
-        <div><textarea maxLength="280" rows="6" cols="50" className="posteo" value = {bodyEditando} onChange= {cambiarValorInput}></textarea></div>
+        <div><textarea maxLength="280" className="posteo" value = {bodyEditando} onChange= {cambiarValorInput}></textarea></div>
         <div><div onClick={guardarEdicion} className="boton">Guardar cambios</div></div>
         <div><div onClick={() => {setEsEditar(false)}} className="boton">Cancelar</div></div>
         </>

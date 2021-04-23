@@ -76,24 +76,42 @@
   }
 }
 
+/*meda queries para cel */
+
 @media (max-width: 700px) {
 
   .app{
   margin-left:0;
   }
   
+  .App-header > * {
+    margin: 3px;
+  }
   .contenedor{
   flex-direction:column;
   align-items:center;
+  margin-top:50px;
   }
   
   .areaUsuario{
   flex-direction:row;
   position:static;
+  padding:10px;
+  margin:8px;
+  margin-bottom: 0px;
   }  
   
 .zonaPosteos{
   position:static;
+}
+
+.noCelu{
+  display: none;
+}
+
+.Card{
+  padding:10px!important;
+  margin:8px!important;
 }
 
   }
