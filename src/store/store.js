@@ -1,10 +1,19 @@
 import { createStore } from 'redux';
 
+let iniciarToken = "";
+let iniciarUsuario = {};
+if (localStorage.getItem("token")){
+    iniciarToken = localStorage.getItem("token");
+    const base64Url = iniciarToken.split('.')[1];
+    const base64Decode = Buffer.from(base64Url, "base64");
+    iniciarUsuario = JSON.parse(base64Decode);
+};
+
 const estadoInicial = {
-    token:"",
+    token: iniciarToken,
     listadoPosteos: "",
     listadoUsuarios: "",
-    usuario: {},
+    usuario: iniciarUsuario,
     modificarPosteos: 0,
     modificarUsuarios: 0
 }
@@ -16,24 +25,25 @@ function reducer(state = estadoInicial, action) {
     switch (action.type) {        
 
         case 'GUARDAR_TOKEN':
+            localStorage.setItem("token", action.token);
             nuevoEstado.token=action.token;
+            if(action.token){
+                const base64Url = action.token.split('.')[1];
+                const base64Decode = Buffer.from(base64Url, "base64");
+                nuevoEstado.usuario = JSON.parse(base64Decode);
+            } else {
+                nuevoEstado.usuario = "";
+            }
+            
             return nuevoEstado;
 
         case "GUARDAR_LISTADO":
             nuevoEstado[action.tipoListado]=action.listado;
             return nuevoEstado;
 
-        case "GUARDAR_USUARIO":
-            nuevoEstado.usuario=action.usuario;
-            return nuevoEstado;
-
         case "MODIFICAR_POSTEOS":
             nuevoEstado.modificarPosteos++;
             return nuevoEstado; 
-
-        case "MODIFICAR_USUARIOS":
-            nuevoEstado.modificarUsuarios++;
-            return nuevoEstado;
 
         default:
             return state;            

@@ -23,11 +23,7 @@ export default function Login(props) {
             console.log("esperando respuesta del servidor");
             const loguear = await axios.post(url, objLogin);          
             if (loguear.status===200) {
-                dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});
-                const base64Url = loguear.data.token.split('.')[1];
-                const base64Decode = Buffer.from(base64Url, "base64");
-                const datosUsuario = JSON.parse(base64Decode);
-                dispatch({type: 'GUARDAR_USUARIO', usuario: datosUsuario});              
+                dispatch({type: 'GUARDAR_TOKEN', token: loguear.data.token});            
             }
         }
 
