@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   margin-top: 90px;
+  margin-left: 250px;
 }
 
 .App-logo {
@@ -18,7 +19,8 @@
   position: fixed;
   width: 100%;
   top: 0; /* Position the navbar at the top of the page */
-
+  left: 0;
+  z-index: 100;
 }
 
 .App-header {
@@ -50,7 +52,8 @@
   padding: 40px;  
   border: 1px solid rgb(235, 238, 240);
   border-radius:10px;
-  position: fixed;
+  position: fixed;  
+  left: 0;
 }
 
 .contenedor{
@@ -70,3 +73,22 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 700px) {
+
+  .app{
+  margin-left:0;
+  }
+  
+  .contenedor{
+  flex-direction:column;
+  align-items:center;
+  }
+  
+  .areaUsuario{
+  flex-direction:row;
+  position:static;
+  }  
+  
+  }
+  
