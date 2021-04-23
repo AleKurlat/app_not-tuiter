@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  margin-top: 160px;
+  margin-top: 90px;
 }
 
 .App-logo {
@@ -38,19 +38,24 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  flex-grow: 1;
 
 }
 
 .areaUsuario{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(228 230 230);
+  flex-direction: column;
+  background-color: rgb(247, 249, 250);
+  margin: 15px;
+  padding: 40px;  
+  border: 1px solid rgb(235, 238, 240);
+  border-radius:10px;
+  position: fixed;
 }
 
-.areaUsuario div{
-  margin-left:10px;
-  margin-right:10px;
+.contenedor{
+  display: flex;
+  align-items: flex-start;
 }
 
 .App-link {

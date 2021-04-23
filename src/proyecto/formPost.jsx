@@ -20,7 +20,7 @@ export default function FormPost(props){
             const postear = await axios.post(url, objPosteo, opciones);          
             if (postear.status===200) {
                 setPosteo("");
-                dispatch({type: 'MODIFICAR_POSTEOS'});
+                dispatch({type: 'REFRESCAR_POSTEOS'});
             }}
 
         catch(e){alert(e.response.data.Error);}    

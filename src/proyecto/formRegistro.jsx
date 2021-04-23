@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {Link} from "react-router-dom";
 
 export default function Registro(props) {
@@ -8,7 +7,6 @@ export default function Registro(props) {
     const dominio = props.dominio;
     const ruta = "api/usuarios";
     const url = dominio + ruta;
-    const dispatch = useDispatch();
     const userVacio = {        
         usuario: "",
         clave:"",
@@ -24,7 +22,6 @@ export default function Registro(props) {
         try{ 
             const registrar = await axios.post(url, objRegistro);          
             if (registrar.status===200) {
-                dispatch({type: 'MODIFICAR_USUARIOS'});
                 alert("Usuario guardado correctamente");
                 setObjRegistro(userVacio);
                 props.varios.history.push("/");

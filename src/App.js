@@ -3,16 +3,15 @@ import './App.css';
 import Principal from "./proyecto/principal.jsx";
 import Login from "./proyecto/login.jsx"; // importo página LOGIN
 import Registro from "./proyecto/formRegistro.jsx";
+import Lateral from "./proyecto/lateral.jsx";
 import { BrowserRouter as Router, Route } from 'react-router-dom'; // necesario para redirigir rutas
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 function App() {
   
-  const token = useSelector((estado) => estado.token);
-  const usuario = useSelector((estado) => estado.usuario);
+  const token = useSelector((estado) => estado.token);  
   const dominio = "https://not-tuiter-api.herokuapp.com/";
-  //const dominio = "http://localhost:3001/";
-  const dispatch = useDispatch();
+  //const dominio = "http://localhost:3001/";  
 
   function checkAuth(props){
     if (token) {
@@ -22,18 +21,8 @@ function App() {
     }
   }
 
-  function desloguear(){
-    dispatch({type: 'GUARDAR_TOKEN', token: ""});
-    dispatch({type: 'GUARDAR_USUARIO', usuario: {}});
-}
-
-  let areaUsuario = "";
-  if(token) {areaUsuario = 
-    <div className="areaUsuario">
-    <div><h3 className="info">Bienvenidx {usuario.usuario}</h3></div>
-    <div><div className="boton" onClick={desloguear}>Cerrar sesión de este usuario</div></div>
-    </div>
-  };
+  let lateral ="";
+  if(token){lateral = <Lateral />}  
 
   return (
     
@@ -44,17 +33,21 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <h5>By ALEK</h5>
           <h6>App con objetivos de práctica de REACT.JS y EXPRESS</h6>
-        </header>
-
-        {areaUsuario}
+        </header>        
       </div>
 
-      <div className="zonaPosteos">       
-        <Router>
-          <Route exact path="/" render={(props)=>{return checkAuth(props)}} />
-          <Route exact path="/registro" render={(props) => {return(<Registro dominio={dominio} varios = {props}/>)}}  />
-        </Router>
-      </div>      
+      <div className="contenedor">
+        
+        {lateral}        
+
+        <div className="zonaPosteos">       
+          <Router>
+            <Route exact path="/" render={(props)=>{return checkAuth(props)}} />
+            <Route exact path="/registro" render={(props) => {return(<Registro dominio={dominio} varios = {props}/>)}}  />
+          </Router>
+        </div>  
+
+      </div>    
     </div>
   );
 }

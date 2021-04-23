@@ -17,7 +17,7 @@ export default function Card(props){
         try{ 
             const borrar = await axios.delete(urlPosteo, opciones);          
             if (borrar.status===200) {
-                dispatch({type: 'MODIFICAR_POSTEOS'});    
+                dispatch({type: 'REFRESCAR_POSTEOS'});    
             }
         }
         catch(e){alert(e.response.data.Error);}    
@@ -29,7 +29,7 @@ export default function Card(props){
             const editar = await axios.put(urlPosteo, objEditado, opciones);          
             if (editar.status===200) {
                 setEsEditar(false);
-                dispatch({type: 'MODIFICAR_POSTEOS'});    
+                dispatch({type: 'REFRESCAR_POSTEOS'});    
             }
         }
         catch(e){

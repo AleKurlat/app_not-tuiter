@@ -13,7 +13,7 @@ export default function Principal(props) {
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
     const listadoPosteos = useSelector((estado) => estado.listadoPosteos);
-    const modificarPosteos = useSelector((estado) => estado.modificarPosteos);
+    const refrescarPosteos = useSelector((estado) => estado.refrescarPosteos);
 
     useEffect(() => {
         async function traerListado(){    
@@ -29,7 +29,7 @@ export default function Principal(props) {
         traerListado();    
                
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [modificarPosteos]);
+    }, [refrescarPosteos]);
  
     let listadoMapeado = ""
     if(listadoPosteos){

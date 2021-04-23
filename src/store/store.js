@@ -14,7 +14,7 @@ const estadoInicial = {
     listadoPosteos: "",
     listadoUsuarios: "",
     usuario: iniciarUsuario,
-    modificarPosteos: 0,
+    refrescarPosteos: 0,
     modificarUsuarios: 0
 }
 
@@ -41,8 +41,8 @@ function reducer(state = estadoInicial, action) {
             nuevoEstado[action.tipoListado]=action.listado;
             return nuevoEstado;
 
-        case "MODIFICAR_POSTEOS":
-            nuevoEstado.modificarPosteos++;
+        case "REFRESCAR_POSTEOS":
+            nuevoEstado.refrescarPosteos++;
             return nuevoEstado; 
 
         default:
