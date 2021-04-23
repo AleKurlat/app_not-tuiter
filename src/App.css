@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-  margin-top: 90px;
-  margin-left: 250px;
 }
 
 .App-logo {
@@ -41,6 +39,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   flex-grow: 1;
+  left: 250px;
+  position: relative;
+  max-width: 1000px;
 
 }
 
@@ -59,6 +60,7 @@
 .contenedor{
   display: flex;
   align-items: flex-start;
+  margin-top: 90px;
 }
 
 .App-link {
@@ -90,5 +92,9 @@
   position:static;
   }  
   
+.zonaPosteos{
+  position:static;
+}
+
   }
   
