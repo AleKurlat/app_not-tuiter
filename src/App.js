@@ -10,7 +10,8 @@ import {useSelector} from 'react-redux';
 function App() {
   
   const token = useSelector((estado) => estado.token);
-  const dominio = "https://not-tuiter-api.herokuapp.com/"; 
+  //const dominio = "https://not-tuiter-api.herokuapp.com/";
+  const dominio = "http://localhost:3001/";  
 
   function checkAuth(props){
     if (token) {
