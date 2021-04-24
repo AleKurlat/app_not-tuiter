@@ -24,7 +24,7 @@ export default function Principal(props) {
                 }
             }
             catch(e){
-                if(e.response){console.log(e.response.data.Error)} else {console.log(e)}
+                if(e.response){alert(e.response.data.Error)} else {console.log(e)}
             };
         }
 
