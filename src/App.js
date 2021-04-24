@@ -12,7 +12,7 @@ function App() {
   const token = useSelector((estado) => estado.token); 
   let dominio = ""; 
   if (process.env.NODE_ENV === "development"){
-    console.log("operando en servidor local");
+    console.log(process.env);
     dominio = "http://localhost:3001/"  
   } else {
     console.log("operando en servidor remoto");
