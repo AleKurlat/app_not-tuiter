@@ -19,11 +19,13 @@ export default function Principal(props) {
         async function traerListado(){    
             try{
                 const resp = await axios.get(url, opciones);            
-                if (resp.status===200) {
+                if (resp && resp.status===200) {
                     dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoPosteos"});
                 }
             }
-            catch(e){(alert(e.response.data.Error))};
+            catch(e){
+                if(e.response){console.log(e.response.data.Error)} else {console.log(e)}
+            };
         }
 
         traerListado();    

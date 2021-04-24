@@ -9,9 +9,12 @@ import {useSelector} from 'react-redux';
 
 function App() {
   
-  const token = useSelector((estado) => estado.token);  
-  const dominio = "https://not-tuiter-api.herokuapp.com/";
-  //const dominio = "http://localhost:3001/";  
+  const token = useSelector((estado) => estado.token); 
+  let dominio = ""; 
+  if (process.env.PORT){
+    console.log("operando en servidor remoto");
+    dominio = "https://not-tuiter-api.herokuapp.com/";    
+  } else {dominio = "http://localhost:3001/"};    
 
   function checkAuth(props){
     if (token) {
