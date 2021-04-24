@@ -11,10 +11,13 @@ function App() {
   
   const token = useSelector((estado) => estado.token); 
   let dominio = ""; 
-  if (process.env.PORT){
+  if (process.env.NODE_ENV === "development"){
+    console.log("operando en servidor local");
+    dominio = "http://localhost:3001/"  
+  } else {
     console.log("operando en servidor remoto");
-    dominio = "https://not-tuiter-api.herokuapp.com/";    
-  } else {dominio = "http://localhost:3001/"};    
+    dominio = "https://not-tuiter-api.herokuapp.com/";  
+  };    
 
   function checkAuth(props){
     if (token) {
