@@ -85,10 +85,10 @@ export default function Card(props){
 
     return(
         <div className="Card">
+            <img src={loading} alt="esperando" style={{"display": displayLoading, "margin-left": "auto", "margin-right": "auto", "width": "40px"}}></img>
             <div className="datosPost"><span className ="info">{props.datos.usuario}</span><span className ="info">{formatearFechas(props.datos.fecha)}</span></div>
             {cuerpoDelMensaje}
             {avisoEditado}
-            <img src={loading} alt="esperando" style={{"display": displayLoading, "margin-left": "auto", "margin-right": "auto", "width": "40px"}}></img>
             {areaModificacion}
         </div>
     )
