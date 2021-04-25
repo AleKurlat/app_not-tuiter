@@ -52,7 +52,7 @@
   padding: 40px;  
   border: 1px solid rgb(235, 238, 240);
   border-radius:10px;
-  position: fixed;  
+  position: absolute;  
   left: 0;
 }
 
@@ -94,7 +94,7 @@
 
 /*meda queries para cel */
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
 
   .app{
   margin-left:0;
