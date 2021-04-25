@@ -17,25 +17,23 @@ export default function Principal(props) {
     const refrescarPosteos = useSelector((estado) => estado.refrescarPosteos);
     const [displayLoading, setDisplayLoading] = useState();
 
-    useEffect(() => {
-        async function traerListado(){    
-            try{
-                setDisplayLoading("block");
-                const resp = await axios.get(url, opciones);            
-                if (resp && resp.status===200) {
-                    dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoPosteos"});
-                    setDisplayLoading("none");
-                }
+    async function traerListado(){    
+        try{
+            setDisplayLoading("block");
+            const resp = await axios.get(url, opciones);            
+            if (resp && resp.status===200) {
+                dispatch({type: "GUARDAR_LISTADO", listado: resp.data, tipoListado:"listadoPosteos"});
+                setDisplayLoading("none");
             }
-            catch(e){
-                if(e.response){alert(e.response.data.Error)} else {console.log(e)}
-            };
         }
+        catch(e){
+            setDisplayLoading("none");
+            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
+        };
+    }
 
-        traerListado();    
-               
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [refrescarPosteos]);
+    useEffect(() => {traerListado()}, [refrescarPosteos]);
  
     let listadoMapeado = ""
     if(listadoPosteos){

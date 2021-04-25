@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import loading from "./loading.svg";
 
 export default function Registro(props) {
 
@@ -13,27 +14,33 @@ export default function Registro(props) {
         email:"",
     }
     const [objRegistro, setObjRegistro] = useState(userVacio);
+    const [displayLoading, setDisplayLoading] = useState("none");
+
 
     function cambiarValorInput(e) {        
         setObjRegistro({...objRegistro, [e.target.name]:e.target.value});
     };
 
     async function guardarForm(e){            
-        try{ 
+        try{
+            setDisplayLoading("block"); 
             const registrar = await axios.post(url, objRegistro);          
-            if (registrar.status===200) {
+            if (registrar && registrar.status===200) {
+                setDisplayLoading("none");
                 alert("Usuario guardado correctamente");
                 setObjRegistro(userVacio);
                 props.varios.history.push("/");
             }}
 
         catch(e){
-            if(e.response){alert(e.response.data.Error)} else {console.log(e)};
+            setDisplayLoading("none");
+            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
         }    
     }
 
     return (
         <div className="Card">
+            <img src={loading} alt="esperando" style={{"display": displayLoading, "margin-left": "auto", "margin-right": "auto"}}></img>
             <h1>Registrar datos de usuario</h1>
             <div><div>Usuario: </div><input type="text" onChange={cambiarValorInput} value={objRegistro.usuario} name="usuario"></input></div>
             <div><div>Contraseña: </div><input type="password" onChange={cambiarValorInput} value={objRegistro.clave} name="clave"></input></div>

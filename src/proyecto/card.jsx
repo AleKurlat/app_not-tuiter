@@ -2,6 +2,7 @@ import './card.css';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
 import React, {useState} from 'react';
+import loading from "./loading.svg";
 
 export default function Card(props){ 
 
@@ -12,29 +13,38 @@ export default function Card(props){
     const usuario = useSelector((estado) => estado.usuario);
     const [esEditar, setEsEditar] = useState(false);
     const [bodyEditando, setBodyEditando] = useState(props.datos.body);
+    const [displayLoading, setDisplayLoading] = useState("none");
 
     async function borrarPosteo(){
-        try{ 
+        try{
+            setDisplayLoading("block"); 
             const borrar = await axios.delete(urlPosteo, opciones);          
-            if (borrar.status===200) {
-                dispatch({type: 'REFRESCAR_POSTEOS'});    
-            }
-        }
-        catch(e){alert(e.response.data.Error);}    
-    }    
-
-    async function guardarEdicion(){
-        try{ 
-            const objEditado = {body: bodyEditando};
-            const editar = await axios.put(urlPosteo, objEditado, opciones);          
-            if (editar.status===200) {
-                setEsEditar(false);
+            if (borrar && borrar.status===200) {
+                setDisplayLoading("none");
                 dispatch({type: 'REFRESCAR_POSTEOS'});    
             }
         }
         catch(e){
-            alert(e.response.data.Error);
-            setBodyEditando(props.datos.body);
+            setDisplayLoading("none");
+            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
+        }    
+    }    
+
+    async function guardarEdicion(){
+        try{
+            setDisplayLoading("block"); 
+            const objEditado = {body: bodyEditando};
+            const editar = await axios.put(urlPosteo, objEditado, opciones);          
+            if (editar && editar.status===200) {
+                setEsEditar(false);
+                setDisplayLoading("none"); 
+                dispatch({type: 'REFRESCAR_POSTEOS'});    
+            }
+        }
+        catch(e){
+            setDisplayLoading("none");
+            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
+            setBodyEditando(props.datos.body);            
         }    
     } 
 
@@ -78,6 +88,7 @@ export default function Card(props){
             <div className="datosPost"><span className ="info">{props.datos.usuario}</span><span className ="info">{formatearFechas(props.datos.fecha)}</span></div>
             {cuerpoDelMensaje}
             {avisoEditado}
+            <img src={loading} alt="esperando" style={{"display": displayLoading, "margin-left": "auto", "margin-right": "auto", "width": "40px"}}></img>
             {areaModificacion}
         </div>
     )

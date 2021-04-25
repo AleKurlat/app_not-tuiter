@@ -20,13 +20,16 @@ export default function FormPost(props){
             setDisplayLoading("block");
             const objPosteo ={body: posteo}; 
             const postear = await axios.post(url, objPosteo, opciones);          
-            if (postear.status===200) {
+            if (postear && postear.status===200) {
                 setPosteo("");
                 setDisplayLoading("none");
                 dispatch({type: 'REFRESCAR_POSTEOS'});
             }}
 
-        catch(e){alert(e.response.data.Error);}    
+        catch(e){
+            setDisplayLoading("none");
+            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
+        }    
     }
 
     return(
