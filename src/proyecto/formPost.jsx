@@ -9,6 +9,7 @@ export default function FormPost(props){
     const dispatch = useDispatch();
     const token = useSelector((estado) => estado.token);
     const opciones = {headers: {Authorization: token}};
+    const setDisplayLoading = props.setDisplayLoading;
 
     function cambiarValorInput(e) {        
         setPosteo(e.target.value);
@@ -16,10 +17,12 @@ export default function FormPost(props){
 
     async function guardarForm(e){            
         try{
+            setDisplayLoading("block");
             const objPosteo ={body: posteo}; 
             const postear = await axios.post(url, objPosteo, opciones);          
             if (postear.status===200) {
                 setPosteo("");
+                setDisplayLoading("none");
                 dispatch({type: 'REFRESCAR_POSTEOS'});
             }}
 
