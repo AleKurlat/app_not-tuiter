@@ -34,10 +34,12 @@ function App() {
     <div className="App">
       <div className="fijo">
         <header className="App-header">
-          <h3>Not tw*tt*r</h3>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h5>By ALEK</h5>
-          <h6 className="noCelu">App con objetivos de práctica de REACT.JS y EXPRESS</h6>
+          <div className="logoApp">
+            <h1>Not tw*tt*r</h1>
+            <img src={logo} className="App-logo" alt="logo" style={{"margin-bottom":"5px"}} />
+            <h5 style={{"margin-bottom":"10px"}}><span style={{"color": "rgb(119 197 245)"}}>Ale K.</span></h5>
+          </div>
+          <div className="noCelu">App con objetivo de práctica de REACT.JS y NODE/EXPRESS</div>
         </header>        
       </div>
 

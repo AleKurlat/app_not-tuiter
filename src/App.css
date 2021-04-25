@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 5vmin;
+  height: 7vmin;
   pointer-events: none;
 }
 
@@ -26,9 +26,10 @@
   padding: 5px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  flex-direction: column;
 }
 
 .zonaPosteos {
@@ -67,6 +68,22 @@
   color: #61dafb;
 }
 
+.logoApp{
+  flex-direction: row;
+  display: flex;
+  align-items: flex-end;
+}
+
+.logoApp > * {
+  margin: 10px;
+  margin-bottom: 0;
+}
+
+.noCelu{
+  margin: 10px;
+  font-size: 14px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -85,8 +102,15 @@
   }
   
   .App-header > * {
-    margin: 3px;
+    margin-bottom:3px;
+    margin-top:3px;
   }
+
+  .logoApp > * {
+    margin-bottom:3px;
+    margin-top:3px;
+  }
+
   .contenedor{
   flex-direction:column;
   align-items:center;
