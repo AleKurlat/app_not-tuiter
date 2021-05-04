@@ -34,9 +34,7 @@ export default function Login(props) {
             setDisplayLoading("none");
             if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
         }    
-    }
-
-    
+    }    
 
     return (
         <div className="Card">

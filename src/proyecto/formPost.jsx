@@ -28,7 +28,14 @@ export default function FormPost(props){
 
         catch(e){
             setDisplayLoading("none");
-            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
+            if(e.response){
+                if(e.response.status === 403){
+                    dispatch({type: 'GUARDAR_TOKEN', token: ""});
+                    alert("La sesión almacenada caducó o es inválida, iniciar nueva sesión");
+                } else {
+                    console.log(e.response.data.Error);
+                }
+            } else {alert("Error en la solicitud al servidor")};
         }    
     }
 

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import loading from "./loading.svg";
+import {useDispatch} from 'react-redux';
+
 
 export default function Registro(props) {
 
@@ -15,7 +17,7 @@ export default function Registro(props) {
     }
     const [objRegistro, setObjRegistro] = useState(userVacio);
     const [displayLoading, setDisplayLoading] = useState("none");
-
+    const dispatch = useDispatch();
 
     function cambiarValorInput(e) {        
         setObjRegistro({...objRegistro, [e.target.name]:e.target.value});
@@ -34,8 +36,14 @@ export default function Registro(props) {
 
         catch(e){
             setDisplayLoading("none");
-            if(e.response){alert(e.response.data.Error)} else {alert("Falló la conexión con el servidor")};
-        }    
+            if(e.response){
+                if(e.response.status === 403){
+                    dispatch({type: 'GUARDAR_TOKEN', token: ""});
+                    alert("La sesión almacenada caducó o es inválida, iniciar nueva sesión");
+                } else {
+                    console.log(e.response.data.Error);
+                }
+            } else {alert("Error en la solicitud al servidor")};        }    
     }
 
     return (
